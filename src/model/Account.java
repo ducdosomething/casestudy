@@ -35,6 +35,4 @@ public abstract class Account {
                 ", password='" + password + '\'' +
                 '}';
     }
-
-    // Khai báo phương thức abstract nếu cần
 }

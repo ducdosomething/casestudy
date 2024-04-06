@@ -1,8 +1,7 @@
 package bookManagerment;
 
 import model.LibrarianAccount;
-import storage.LibrarianReadWriteFile;
-import view.LoginView;
+import view.PreLibLoginView;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,9 +12,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static storage.LibrarianReadWriteFile.writeLibrarianAccountToFile;
-
-public class ValidateRegister {
+public class LibrarianValidateRegister {
 
     public static void registerUser(String fileName, int iD, String username, String password, int age, String gender) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
@@ -66,8 +63,8 @@ public class ValidateRegister {
                         registerUser(fileName, newId, newUsername, newPassword, newAge, newGender);
                         //writeLibrarianAccountToFile( librarianAccounts, fileName);
                         System.out.println("Registration successful!");
-                        LoginView loginView = new LoginView();
-                        loginView.login(scanner);
+                        PreLibLoginView preLibLoginView = new PreLibLoginView();
+                        preLibLoginView.login(scanner);
                         break;
                     }
                 }

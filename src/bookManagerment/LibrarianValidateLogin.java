@@ -6,10 +6,10 @@ import storage.LibrarianReadWriteFile;
 import java.util.List;
 import java.util.Scanner;
 
-public class ValidateLogin {
+public class LibrarianValidateLogin {
     private List<LibrarianAccount> users;
 
-    public ValidateLogin(String fileName) {
+    public LibrarianValidateLogin(String fileName) {
         users = LibrarianReadWriteFile.readLibrarianAccountFromFile(fileName);
     }
 
@@ -23,7 +23,7 @@ public class ValidateLogin {
     }
 
     public static boolean checkLogin(String fileName) {
-        ValidateLogin validateLogin = new ValidateLogin(fileName);
+        LibrarianValidateLogin librarianValidateLogin = new LibrarianValidateLogin(fileName);
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -37,7 +37,7 @@ public class ValidateLogin {
             System.out.print("Enter your password: ");
             String password = scanner.nextLine();
 
-            if (validateLogin.authenticate(username, password)) {
+            if (librarianValidateLogin.authenticate(username, password)) {
                 System.out.println("Login successful!");
                 return true;
             } else {

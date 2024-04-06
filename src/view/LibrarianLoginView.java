@@ -1,6 +1,6 @@
 package view;
 
-import bookManagerment.ValidateLogin;
+import bookManagerment.LibrarianValidateLogin;
 import storage.LibrarianReadWriteFile;
 
 import java.util.Scanner;
@@ -10,7 +10,7 @@ public class LibrarianLoginView {
         String fileName = "src/database/LibrarianAccount.txt";
         LibrarianReadWriteFile librarianReadWriteFile = new LibrarianReadWriteFile();
         librarianReadWriteFile.readLibrarianAccountFromFile(fileName);
-        ValidateLogin loginSystem = new ValidateLogin(fileName);
+        LibrarianValidateLogin loginSystem = new LibrarianValidateLogin(fileName);
         System.out.println("------ Management program ------");
         int choice;
         do {
@@ -23,12 +23,12 @@ public class LibrarianLoginView {
 
             switch (choice) {
                 case 1:
-                    LoginView loginView = new LoginView();
-                    loginView.login(scanner);
+                    PreLibLoginView preLibLoginView = new PreLibLoginView();
+                    preLibLoginView.login(scanner);
                     break;
                 case 2:
-                    RegisterView registerView = new RegisterView();
-                    registerView.register(scanner);
+                    LibrarianRegisterView librarianRegisterView = new LibrarianRegisterView();
+                    librarianRegisterView.register(scanner);
                     break;
                 case 0:
                     System.out.println("Exiting...");
