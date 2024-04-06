@@ -10,7 +10,7 @@ public class LibrarianReadWriteFile {
     public static void writeLibrarianAccountToFile(List<LibrarianAccount> librarianAccounts, String fileName) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true))) {
             for (LibrarianAccount librarianAccount : librarianAccounts) {
-                bw.write(librarianAccount.getiD() + "," +librarianAccount.getUsername() + "," + librarianAccount.getPassword() +
+                bw.write(librarianAccount.getiD() + "," + librarianAccount.getUsername() + "," + librarianAccount.getPassword() +
                             "," +  librarianAccount.getAge() + "," + librarianAccount.getGender());
                 bw.newLine();
             }

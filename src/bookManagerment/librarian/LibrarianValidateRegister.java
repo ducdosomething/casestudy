@@ -1,7 +1,7 @@
-package bookManagerment;
+package bookManagerment.librarian;
 
 import model.LibrarianAccount;
-import view.PreLibLoginView;
+import view.librarian.PreLibLoginView;
 
 import java.io.BufferedWriter;
 import java.io.File;

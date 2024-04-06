@@ -1,6 +1,6 @@
 package view;
 
-import view.LibrarianLoginView;
+import view.librarian.LibrarianLoginView;
 
 import java.util.Scanner;
 

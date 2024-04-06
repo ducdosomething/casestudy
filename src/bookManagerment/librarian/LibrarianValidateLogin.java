@@ -1,4 +1,4 @@
-package bookManagerment;
+package bookManagerment.librarian;
 
 import model.LibrarianAccount;
 import storage.LibrarianReadWriteFile;
@@ -7,15 +7,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class LibrarianValidateLogin {
-    private List<LibrarianAccount> users;
+    private List<LibrarianAccount> librarians;
 
     public LibrarianValidateLogin(String fileName) {
-        users = LibrarianReadWriteFile.readLibrarianAccountFromFile(fileName);
+        librarians = LibrarianReadWriteFile.readLibrarianAccountFromFile(fileName);
     }
 
     public boolean authenticate(String username, String password) {
-        for (LibrarianAccount user : users) {
-            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+        for (LibrarianAccount librarian : librarians) {
+            if (librarian.getUsername().equals(username) && librarian.getPassword().equals(password)) {
                 return true;
             }
         }

@@ -1,6 +1,6 @@
-package view;
+package view.librarian;
 
-import bookManagerment.LibrarianValidateLogin;
+import bookManagerment.librarian.LibrarianValidateLogin;
 import storage.LibrarianReadWriteFile;
 
 import java.util.Scanner;
