@@ -1,32 +1,35 @@
-package bookManagerment.librarian;
+package bookManagerment.user;
 
 import model.LibrarianAccount;
+import model.UserAccount;
 import view.librarian.PreLibLoginView;
+import view.user.PreUserLoginView;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LibrarianValidateRegister {
-
-    public static void registerLibrarian(String fileName, int iD, String username, String password, int age, String gender) {
+public class UserValidateRegister {
+    public static void registerUser(String fileName, int iD, String username, String password, int age, String gender, String address, String phoneNumber) {
+        LocalDateTime registrationTime = LocalDateTime.now();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
             if (new File(fileName).length() > 0) {
                 writer.newLine();
             }
-            writer.write(iD + "," +username + "," + password + "," + age + "," + gender);
+            writer.write(iD + "," +username + "," + password + "," + age + "," + gender + "," + address + "," + phoneNumber + "," + registrationTime);
             writer.newLine();
         } catch (IOException e) {
             System.err.println("Error writing to file: " + e.getMessage());
         }
     }
 
-    public static void checkRegistration(String fileName, List<LibrarianAccount> librarianAccounts) {
+    public static void checkRegistration(String fileName, List<UserAccount> userAccounts) {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -58,12 +61,16 @@ public class LibrarianValidateRegister {
                         int newAge = Integer.parseInt(scanner.nextLine());
                         System.out.println("Enter your gender: ");
                         String newGender = scanner.nextLine();
+                        System.out.println("Enter your address: ");
+                        String newAddress = scanner.nextLine();
+                        System.out.println("Enter your phone number: ");
+                        String newPhoneNumber = scanner.nextLine();
 
-                        registerLibrarian(fileName, newId, newUsername, newPassword, newAge, newGender);
+                        registerUser(fileName, newId, newUsername, newPassword, newAge, newGender, newAddress, newPhoneNumber);
 
                         System.out.println("Registration successful!");
-                        PreLibLoginView preLibLoginView = new PreLibLoginView();
-                        preLibLoginView.login(scanner);
+                        PreUserLoginView preUserLoginView = new PreUserLoginView();
+                        preUserLoginView.login(scanner);
                         break;
                     }
                 }

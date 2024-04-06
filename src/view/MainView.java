@@ -1,6 +1,7 @@
 package view;
 
 import view.librarian.LibrarianLoginView;
+import view.user.UserLoginView;
 
 import java.util.Scanner;
 
@@ -31,7 +32,8 @@ public class MainView {
                     librarianLoginView.librarian(scanner);
                     break;
                 case 2:
-                    // user(scanner);
+                    UserLoginView userLoginView = new UserLoginView();
+                    userLoginView.user(scanner);
                     break;
                 case 0:
                     System.out.println("Exiting...");
