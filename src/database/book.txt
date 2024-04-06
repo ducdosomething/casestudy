@@ -1,0 +1,4 @@
+1,The Rules of Work,3000.0,Office,Richard Templar,12
+2,Think and Grow Rich,2500.0,Self-Help,Napoleon Hill,8
+3,To Kill a Mockingbird,3500.0,Novel,Harper Lee,6
+4,Sherlock Holmes,10000.0,Detective,Arthur Conan Doyle,5
