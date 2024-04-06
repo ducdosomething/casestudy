@@ -2,13 +2,33 @@ package bookManagerment;
 
 import model.LibrarianAccount;
 import storage.LibrarianReadWriteFile;
+import view.LoginView;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static storage.LibrarianReadWriteFile.writeLibrarianAccountToFile;
+
 public class ValidateRegister {
+
+    public static void registerUser(String fileName, int iD, String username, String password, int age, String gender) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            if (new File(fileName).length() > 0) {
+                writer.newLine();
+            }
+            writer.write(iD + "," +username + "," + password + "," + age + "," + gender);
+            writer.newLine();
+        } catch (IOException e) {
+            System.err.println("Error writing to file: " + e.getMessage());
+        }
+    }
+
     public static void checkRegistration(String fileName, List<LibrarianAccount> librarianAccounts) {
         Scanner scanner = new Scanner(System.in);
 
@@ -19,7 +39,9 @@ public class ValidateRegister {
                 return;
             } else if (response.equalsIgnoreCase("yes")) {
                 while (true) {
-                    System.out.print("Enter your new username: ");
+                    System.out.println("Enter your ID: ");
+                    int newId = Integer.parseInt(scanner.nextLine());
+                    System.out.print("Enter your username: ");
                     String newUsername = scanner.nextLine();
 
                     if (!isValidUsername(newUsername)) {
@@ -28,19 +50,25 @@ public class ValidateRegister {
                     }
 
                     while (true) {
-                        System.out.print("Enter your new password: ");
+                        System.out.print("Enter your password: ");
                         String newPassword = scanner.nextLine();
 
                         if (!isValidPassword(newPassword)) {
                             System.out.println("Password is invalid,please try again!");
                             continue;
                         }
+                        System.out.println("Enter your age: ");
+                        int newAge = Integer.parseInt(scanner.nextLine());
+                        System.out.println("Enter your gender: ");
+                        String newGender = scanner.nextLine();
 
-                        LibrarianReadWriteFile.writeLibrarianAccountToFile(librarianAccounts, fileName);
+                        //LibrarianReadWriteFile.writeLibrarianAccountToFile(librarianAccounts, fileName);
+                        registerUser(fileName, newId, newUsername, newPassword, newAge, newGender);
+                        //writeLibrarianAccountToFile( librarianAccounts, fileName);
                         System.out.println("Registration successful!");
-//                        LoginView loginView = new LoginView();
-//                        loginView.login(scanner);
-//                        break;
+                        LoginView loginView = new LoginView();
+                        loginView.login(scanner);
+                        break;
                     }
                 }
             } else {

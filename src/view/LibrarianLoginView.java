@@ -2,8 +2,6 @@ package view;
 
 import bookManagerment.ValidateLogin;
 import storage.LibrarianReadWriteFile;
-import storage.LoginView;
-import storage.RegisterView;
 
 import java.util.Scanner;
 

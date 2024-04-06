@@ -10,7 +10,7 @@ import java.util.List;
 public class LibrarianView {
     public void showLibrarianView() {
         Scanner scanner = new Scanner(System.in);
-        String fileName = "database/book.txt"; // Tên tệp mặc định
+        String fileName = "src/database/book.txt"; // Tên tệp mặc định
 
         while (true) {
             System.out.println("------- MENU -------");
