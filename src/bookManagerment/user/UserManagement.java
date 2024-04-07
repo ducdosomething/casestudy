@@ -8,9 +8,11 @@ import java.util.Map;
 
 public class UserManagement {
     private Map<String, Boolean> books;
+    private Map<String, String> borrowedBooks;
 
     public void readBorrowedBook(String fileName) {
         books = new HashMap<>();
+        borrowedBooks = new HashMap<>();
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -25,10 +27,11 @@ public class UserManagement {
         }
     }
 
-    public void borrowBook(String bookTitle) {
+    public void borrowBook(String bookTitle, String borrower) {
         if (books.containsKey(bookTitle) && books.get(bookTitle)) {
             books.put(bookTitle, false);
-            System.out.println("You have successfully borrowed the book '" + bookTitle + "'.");
+            borrowedBooks.put(borrower, bookTitle);
+            System.out.println("The user " + borrower + " have successfully borrowed the book '" + bookTitle + "'.");
         } else {
             System.out.println("Sorry, the book '" + bookTitle + "' is not available for borrowing.");
         }
@@ -41,6 +44,10 @@ public class UserManagement {
         } else {
             System.out.println("Sorry, the book '" + bookTitle + "' cannot be returned as it is not borrowed.");
         }
+    }
+
+    public Map<String, String> getBorrowedBooks() {
+        return borrowedBooks;
     }
 
     public void displayBorrowedBooks() {

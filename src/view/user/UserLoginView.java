@@ -8,12 +8,12 @@ import view.librarian.PreLibLoginView;
 import java.util.Scanner;
 
 public class UserLoginView {
+    public static final String FILE_NAME = "src/database/UserAccount.txt";
 
     public void user(Scanner scanner) {
-        String fileName = "src/database/UserAccount.txt";
         UserReadWriteFile userReadWriteFile = new UserReadWriteFile();
-        userReadWriteFile.readUserAccountFromFile(fileName);
-        UserValidateLogin loginSystem = new UserValidateLogin(fileName);
+        userReadWriteFile.readUserAccountFromFile(FILE_NAME);
+        UserValidateLogin loginSystem = new UserValidateLogin(FILE_NAME);
         System.out.println("------ USER PROGRAM ------");
         int choice;
         do {
@@ -41,7 +41,7 @@ public class UserLoginView {
             }
         } while (choice != 3);
 
-        boolean loggedIn = loginSystem.checkLogin(fileName);
+        boolean loggedIn = loginSystem.checkLogin(FILE_NAME);
         if (loggedIn) {
             System.out.println("Logged in successfully! Starting management program...");
         } else {

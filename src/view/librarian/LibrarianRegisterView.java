@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class LibrarianRegisterView {
+    public static final String FILE_NAME = "src/database/LibrarianAccount.txt";
     public void register(Scanner scanner) {
 
-        String fileName = "src/database/LibrarianAccount.txt";
-        List<LibrarianAccount> librarianAccounts = LibrarianReadWriteFile.readLibrarianAccountFromFile(fileName);
+        List<LibrarianAccount> librarianAccounts = LibrarianReadWriteFile.readLibrarianAccountFromFile(FILE_NAME);
 
         System.out.println("----------- LIBRARIAN REGISTER -----------");
-        LibrarianValidateRegister.checkRegistration(fileName, librarianAccounts);
+        LibrarianValidateRegister.checkRegistration(FILE_NAME, librarianAccounts);
         System.out.println("Press 0 to return to the main menu.");
         int choice = scanner.nextInt();
         if (choice == 0) {

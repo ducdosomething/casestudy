@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PreLibLoginView {
+    public static final String FILE_NAME = "src/database/LibrarianAccount.txt";
     public void login(Scanner scanner) {
 
-        String fileName = "src/database/LibrarianAccount.txt";
-        List<LibrarianAccount> librarianAccounts = LibrarianReadWriteFile.readLibrarianAccountFromFile(fileName);
+        List<LibrarianAccount> librarianAccounts = LibrarianReadWriteFile.readLibrarianAccountFromFile(FILE_NAME);
 
         System.out.println("------------ LIBRARIAN LOG IN ------------");
-        if (LibrarianValidateLogin.checkLogin(fileName)) {
+        if (LibrarianValidateLogin.checkLogin(FILE_NAME)) {
 
             LibrarianView librarianView = new LibrarianView();
             librarianView.showLibrarianView();

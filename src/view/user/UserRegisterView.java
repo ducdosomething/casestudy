@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class UserRegisterView {
+    public static final String FILE_NAME = "src/database/UserAccount.txt";
     public void register(Scanner scanner) {
 
-        String fileName = "src/database/UserAccount.txt";
-        List<UserAccount> userAccounts = UserReadWriteFile.readUserAccountFromFile(fileName);
+        List<UserAccount> userAccounts = UserReadWriteFile.readUserAccountFromFile(FILE_NAME);
 
         System.out.println("----------- USER REGISTER -----------");
-        UserValidateRegister.checkRegistration(fileName, userAccounts);
+        UserValidateRegister.checkRegistration(FILE_NAME, userAccounts);
         System.out.println("Press 0 to return to the main menu.");
         int choice = scanner.nextInt();
         if (choice == 0) {

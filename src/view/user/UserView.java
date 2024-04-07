@@ -11,7 +11,6 @@ public class UserView {
     public static final String FIELD_NAME = "src/database/book.txt";
     public void showUserView() {
         Scanner scanner = new Scanner(System.in);
-        //String fileName = FIELD_NAME;
         UserManagement userManagement = new UserManagement();
         userManagement.readBorrowedBook(FIELD_NAME);
 
@@ -57,11 +56,15 @@ public class UserView {
                     }
                     break;
                 case 4:
+
                     System.out.print("Enter the name of the book you want to borrow: ");
                     String borrowBookTitle = scanner.nextLine();
-                    userManagement.borrowBook(borrowBookTitle);
+                    System.out.print("Enter your username: ");
+                    String borrower = scanner.nextLine();
+                    userManagement.borrowBook(borrowBookTitle, borrower);
                     break;
                 case 5:
+
                     System.out.print("Enter the name of the book you want to return: ");
                     String returnBookTitle = scanner.nextLine();
                     userManagement.returnBook(returnBookTitle);

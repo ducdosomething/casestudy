@@ -17,7 +17,6 @@ import java.util.regex.Pattern;
 
 public class UserValidateRegister {
     public static void registerUser(String fileName, int iD, String username, String password, int age, String gender, String address, String phoneNumber) {
-        LocalDateTime registrationTime = LocalDateTime.now();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
             if (new File(fileName).length() > 0) {
                 writer.newLine();

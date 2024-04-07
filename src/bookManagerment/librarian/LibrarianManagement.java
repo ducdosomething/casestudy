@@ -1,5 +1,6 @@
 package bookManagerment.librarian;
 
+import bookManagerment.user.UserManagement;
 import model.Book;
 import model.UserAccount;
 import storage.BookReadWriteFile;
@@ -8,8 +9,18 @@ import storage.UserReadWriteFile;
 import java.io.*;
     import java.util.ArrayList;
     import java.util.List;
+import java.util.Map;
 
 public class LibrarianManagement {
+    private static UserManagement userManagement;
+
+    public LibrarianManagement(UserManagement userManagement) {
+        this.userManagement = userManagement;
+    }
+
+    public static void displayBorrowedBooks(Map<String, String> borrowedBooks) {
+        userManagement.displayBorrowedBooks();
+    }
 
     public static void showAllUsersAccount(String fileUser) {
         List<UserAccount> userAccounts = UserReadWriteFile.readUserAccountFromFile(fileUser);
@@ -150,5 +161,7 @@ public class LibrarianManagement {
 
             return foundCategorys;
         }
+
+
     }
 

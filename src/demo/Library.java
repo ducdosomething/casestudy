@@ -9,9 +9,11 @@ import java.util.Scanner;
 
 class Library {
     private Map<String, Boolean> books;
+    private Map<String, String> borrowedBooks;
 
     public Library(String filename) {
         books = new HashMap<>();
+        borrowedBooks = new HashMap<>();
         // Đọc thông tin sách từ tệp văn bản
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
@@ -30,30 +32,34 @@ class Library {
         }
     }
 
-    public void borrowBook(String bookTitle) {
+    public void borrowBook(String bookTitle, String borrower) {
         if (books.containsKey(bookTitle) && books.get(bookTitle)) {
             books.put(bookTitle, false);
-            System.out.println("Bạn đã mượn sách '" + bookTitle + "' thành công.");
+            borrowedBooks.put(borrower, bookTitle);
+            System.out.println("Bạn " + borrower + " đã mượn sách '" + bookTitle + "' thành công.");
         } else {
             System.out.println("Xin lỗi, sách '" + bookTitle + "' không có sẵn để mượn.");
         }
     }
 
-    public void returnBook(String bookTitle) {
-        if (books.containsKey(bookTitle) && !books.get(bookTitle)) {
+    public void returnBook(String bookTitle, String borrower) {
+        if (books.containsKey(bookTitle) && !books.get(bookTitle) && borrowedBooks.containsKey(borrower) && borrowedBooks.get(borrower).equals(bookTitle)) {
             books.put(bookTitle, true);
-            System.out.println("Bạn đã trả sách '" + bookTitle + "' thành công.");
+            borrowedBooks.remove(borrower);
+            System.out.println("Bạn " + borrower + " đã trả sách '" + bookTitle + "' thành công.");
         } else {
-            System.out.println("Xin lỗi, sách '" + bookTitle + "' không thể trả do không được mượn.");
+            System.out.println("Xin lỗi, sách '" + bookTitle + "' không thể trả do không được mượn bởi " + borrower + ".");
         }
+    }
+
+    public Map<String, String> getBorrowedBooks() {
+        return borrowedBooks;
     }
 
     public void displayBorrowedBooks() {
         System.out.println("Danh sách sách đã được mượn:");
-        for (Map.Entry<String, Boolean> entry : books.entrySet()) {
-            if (!entry.getValue()) { // Kiểm tra xem sách đã được mượn (giá trị là false)
-                System.out.println("- " + entry.getKey());
-            }
+        for (Map.Entry<String, String> entry : borrowedBooks.entrySet()) {
+            System.out.println("- " + entry.getKey() + " đã mượn sách '" + entry.getValue() + "'.");
         }
     }
 }
