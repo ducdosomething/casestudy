@@ -13,72 +13,72 @@ public class UserView {
         String fileName = "src/database/book.txt";
 
         while (true) {
-            System.out.println("------- MENU -------");
-            System.out.println("1. Xem thông tin tất cả sách từ file");
-            System.out.println("2. Tìm sách từ file theo tên");
-            System.out.println("3. Tìm sách từ file theo thể loại");
-            System.out.println("4. Thoát");
-            System.out.print("Chọn một tùy chọn: ");
+            System.out.println("------- USER MENU -------");
+            System.out.println("1. View information of all books from the file");
+            System.out.println("2. Find book from file by name");
+            System.out.println("3. Find book from file by category");
+            System.out.println("4. Exit");
+            System.out.print("Choose an option: ");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
 
             switch (choice) {
                 case 1:
-                    System.out.println("Danh sách sách từ file:");
+                    System.out.println("List of books from the file:");
                     FileHandler.showAllBook(fileName);
                     break;
                 case 2:
-                    System.out.print("Nhập tên sách cần tìm: ");
+                    System.out.print("Enter the name of the book you want to find: ");
                     String bookNameToSearch = scanner.nextLine();
                     List<Book> foundBooks = FileHandler.searchBookByName(bookNameToSearch, fileName);
                     if (foundBooks != null) {
-                        System.out.println("Kết quả tìm kiếm:");
+                        System.out.println("Search result:");
                         for (Book book : foundBooks) {
                             System.out.println(book);
                         }
                     }
                     break;
                 case 3:
-                    System.out.print("Nhập thể loại sách cần tìm: ");
+                    System.out.print("Enter the genre of the book you want to find: ");
                     String categoryNameToSearch = scanner.nextLine();
                     List<Book> foundCategorys = FileHandler.searchBookByCategory(categoryNameToSearch, fileName);
                     if (foundCategorys != null) {
-                        System.out.println("Kết quả tìm kiếm:");
+                        System.out.println("Search result:");
                         for (Book book : foundCategorys) {
                             System.out.println(book);
                         }
                     }
                     break;
                 case 4:
-                    System.out.println("Ứng dụng đã kết thúc.");
+                    System.out.println("The application has ended.");
                     scanner.close();
                     return;
                 default:
-                    System.out.println("Tùy chọn không hợp lệ. Vui lòng chọn lại.");
+                    System.out.println("Invalid option. Please choose again.");
             }
         }
     }
 
     public static Book readBookFromInput(Scanner scanner) {
-        System.out.print("ID của sách: ");
+        System.out.print("Book ID ");
         int bookId = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.print("Tên sách: ");
+        System.out.print("Book name: ");
         String name = scanner.nextLine();
 
-        System.out.print("Giá sách: ");
+        System.out.print("Book price: ");
         double price = scanner.nextDouble();
         scanner.nextLine();
 
-        System.out.print("Thể loại sách: ");
+        System.out.print("Book category: ");
         String category = scanner.nextLine();
 
-        System.out.print("Tác giả: ");
+        System.out.print("Author: ");
         String author = scanner.nextLine();
 
-        System.out.print("Số lượng tồn kho: ");
+        System.out.print("Inventory Quantity: ");
         int inventoryQuantity = scanner.nextInt();
         scanner.nextLine();
 

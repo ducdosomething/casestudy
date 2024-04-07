@@ -1,13 +1,29 @@
 package bookManagerment;
 
 import model.Book;
+import model.UserAccount;
 import storage.BookReadWriteFile;
+import storage.UserReadWriteFile;
 
 import java.io.*;
     import java.util.ArrayList;
     import java.util.List;
 
 public class FileHandler {
+
+    public static void showAllUsersAccount(String fileUser) {
+        List<UserAccount> userAccounts = UserReadWriteFile.readUserAccountFromFile(fileUser);
+        if (userAccounts.isEmpty()) {
+            System.out.println("There are no user accounts");
+            return;
+        }
+        System.out.printf("%5s | %20s | %15s | %10s | %20s | %10s | %15s \n", "ID", "USERNAME", "PASSWORD", "AGE", "GENDER",
+                "ADDRESS", "PHONE NUMBER");
+        for (UserAccount u : userAccounts) {
+            System.out.printf("%5d | %20s | %15s | %10d | %20s | %10s | %15s \n",
+                    u.getiD(), u.getUsername(), u.getPassword(), u.getAge(), u.getGender(), u.getAddress(), u.getPhoneNumber());
+        }
+    }
 
     public static void showAllBook(String fileName) {
         List<Book> books = BookReadWriteFile.readBooksFromFile(fileName);
@@ -16,7 +32,7 @@ public class FileHandler {
             return;
         }
         System.out.printf("%5s | %20s | %15s | %10s | %20s | %10s \n", "ID", "NAME", "PRICE", "CATEGORY", "AUTHOR",
-                "INVENTORYQUANTITY");
+                "INVENTORY QUANTITY");
         for (Book b : books) {
             System.out.printf("%5d | %20s | %15.2f | %10s | %20s | %10d \n",
                     b.getBookId(), b.getName(), b.getPrice(), b.getCategory(), b.getAuthor(), b.getInventoryQuantity());
@@ -26,7 +42,7 @@ public class FileHandler {
         public static void deleteBookFromFile(int bookIdToRemove, String fileName) {
             List<Book> books = BookReadWriteFile.readBooksFromFile(fileName);
             if (books == null) {
-                System.out.println("Không thể đọc danh sách sách từ tệp.");
+                System.out.println("Unable to read the list of books from the file.");
                 return;
             }
 
@@ -39,28 +55,27 @@ public class FileHandler {
                     }
                 }
             } catch (IOException e) {
-                System.out.println("Lỗi khi ghi vào tệp: " + e.getMessage());
+                System.out.println("Error writing to file: " + e.getMessage());
                 return;
             }
 
-            // Xóa tệp gốc và đổi tên tệp tạm thời thành tên tệp gốc
             java.io.File oldFile = new java.io.File(fileName);
             java.io.File newFile = new java.io.File(fileName + ".tmp");
             if (oldFile.delete()) {
                 if (!newFile.renameTo(oldFile)) {
-                    System.out.println("Không thể đổi tên tệp tạm thời.");
+                    System.out.println("Unable to rename temporary file.");
                 } else {
-                    System.out.println("Sách đã được xóa khỏi file.");
+                    System.out.println("The book has been deleted from the file.");
                 }
             } else {
-                System.out.println("Không thể xóa tệp gốc.");
+                System.out.println("Unable to delete the original file.");
             }
         }
 
         public static void deleteBookByName(String bookNameToRemove, String fileName) {
             List<Book> books = BookReadWriteFile.readBooksFromFile(fileName);
             if (books == null) {
-                System.out.println("Không thể đọc danh sách sách từ tệp.");
+                System.out.println("Unable to read the list of books from the file.");
                 return;
             }
 
@@ -73,7 +88,7 @@ public class FileHandler {
                     }
                 }
             } catch (IOException e) {
-                System.out.println("Lỗi khi ghi vào tệp: " + e.getMessage());
+                System.out.println("Error writing to file: " + e.getMessage());
                 return;
             }
 
@@ -81,12 +96,12 @@ public class FileHandler {
             java.io.File newFile = new java.io.File(fileName + ".tmp");
             if (oldFile.delete()) {
                 if (!newFile.renameTo(oldFile)) {
-                    System.out.println("Không thể đổi tên tệp tạm thời.");
+                    System.out.println("Unable to rename temporary file.");
                 } else {
-                    System.out.println("Sách đã được xóa khỏi file.");
+                    System.out.println("The book has been deleted from the file.");
                 }
             } else {
-                System.out.println("Không thể xóa tệp gốc.");
+                System.out.println("Unable to delete the original file.");
             }
         }
 
@@ -94,7 +109,7 @@ public class FileHandler {
             List<Book> foundBooks = new ArrayList<>();
             List<Book> books = BookReadWriteFile.readBooksFromFile(fileName);
             if (books == null) {
-                System.out.println("Không thể đọc danh sách sách từ tệp.");
+                System.out.println("Unable to read the list of books from the file.");
                 return null;
             }
 
@@ -107,7 +122,7 @@ public class FileHandler {
             }
 
             if (foundBooks.isEmpty()) {
-                System.out.println("Không tìm thấy sách có tên '" + bookNameToSearch + "'.");
+                System.out.println("No book found with the name '" + bookNameToSearch + "'.");
             }
 
             return foundBooks;
@@ -117,7 +132,7 @@ public class FileHandler {
             List<Book> foundCategorys = new ArrayList<>();
             List<Book> books = BookReadWriteFile.readBooksFromFile(fileName);
             if (books == null) {
-                System.out.println("Không thể đọc danh sách sách từ tệp.");
+                System.out.println("Unable to read the list of books from the file.");
                 return null;
             }
 
@@ -130,7 +145,7 @@ public class FileHandler {
             }
 
             if (foundCategorys.isEmpty()) {
-                System.out.println("Không tìm thấy sách có thể loại '" + categoryNameToSearch + "'.");
+                System.out.println("No books found with the specified genre. '" + categoryNameToSearch + "'.");
             }
 
             return foundCategorys;

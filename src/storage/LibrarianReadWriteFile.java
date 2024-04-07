@@ -32,7 +32,8 @@ public class LibrarianReadWriteFile {
                     String password = data[2];
                     int age = Integer.parseInt(data[3]);
                     String gender = data[4];
-                    librarianAccounts.add(new LibrarianAccount(username, password, iD, age, gender));
+                    LibrarianAccount librarianAccount = new LibrarianAccount(username, password, iD, age, gender);
+                    librarianAccounts.add(librarianAccount);
                 }
             }
         } catch (IOException e) {

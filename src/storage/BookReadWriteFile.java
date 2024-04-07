@@ -7,6 +7,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookReadWriteFile {
+    private static BookReadWriteFile instance;
+
+    private BookReadWriteFile() {
+
+    }
+
+    public static BookReadWriteFile getInstance() {
+        if (instance == null) {
+            synchronized (BookReadWriteFile.class) {
+                if (instance == null) {
+                    instance = new BookReadWriteFile();
+                }
+            }
+        }
+        return instance;
+    }
+
     public static void writeBooksToFile(List<Book> books, String fileName) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true))) {
             for (Book book : books) {
