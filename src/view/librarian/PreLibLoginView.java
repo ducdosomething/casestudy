@@ -13,7 +13,7 @@ public class PreLibLoginView {
         String fileName = "src/database/LibrarianAccount.txt";
         List<LibrarianAccount> librarianAccounts = LibrarianReadWriteFile.readLibrarianAccountFromFile(fileName);
 
-        System.out.println("------------ Log in ------------");
+        System.out.println("------------ LIBRARIAN LOG IN ------------");
         if (LibrarianValidateLogin.checkLogin(fileName)) {
 
             LibrarianView librarianView = new LibrarianView();

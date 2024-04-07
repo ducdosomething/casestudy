@@ -9,12 +9,12 @@ import java.util.List;
 
 public class UserReadWriteFile {
 
-    public static void writeLibrarianAccountToFile(List<UserAccount> userAccounts, String fileName) {
+    public static void writeUserAccountToFile(List<UserAccount> userAccounts, String fileName) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true))) {
             for (UserAccount userAccount : userAccounts) {
                 bw.write(userAccount.getiD() + "," + userAccount.getUsername() + "," + userAccount.getPassword() +
                         "," +  userAccount.getAge() + "," + userAccount.getGender() + "," + userAccount.getAddress() +
-                        "," + userAccount.getPhoneNumber() + "," + userAccount.getRegistrationTime());
+                        "," + userAccount.getPhoneNumber());
                 bw.newLine();
             }
 
@@ -37,8 +37,7 @@ public class UserReadWriteFile {
                     String gender = data[4];
                     String address = data[5];
                     String phoneNumber = data[6];
-                    LocalDateTime registrationTime = LocalDateTime.parse(data[7]);
-                    userAccounts.add(new UserAccount(username, password, iD, age, gender, address, phoneNumber, registrationTime));
+                    userAccounts.add(new UserAccount(username, password, iD, age, gender, address, phoneNumber));
                 }
             }
         } catch (IOException e) {

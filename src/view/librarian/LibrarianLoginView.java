@@ -11,7 +11,7 @@ public class LibrarianLoginView {
         LibrarianReadWriteFile librarianReadWriteFile = new LibrarianReadWriteFile();
         librarianReadWriteFile.readLibrarianAccountFromFile(fileName);
         LibrarianValidateLogin loginSystem = new LibrarianValidateLogin(fileName);
-        System.out.println("------ Management program ------");
+        System.out.println("------ MANAGEMENT PROGRAM ------");
         int choice;
         do {
             System.out.println("Choose an option: ");

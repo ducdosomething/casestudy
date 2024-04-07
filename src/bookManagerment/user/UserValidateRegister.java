@@ -22,7 +22,7 @@ public class UserValidateRegister {
             if (new File(fileName).length() > 0) {
                 writer.newLine();
             }
-            writer.write(iD + "," +username + "," + password + "," + age + "," + gender + "," + address + "," + phoneNumber + "," + registrationTime);
+            writer.write(iD + "," +username + "," + password + "," + age + "," + gender + "," + address + "," + phoneNumber);
             writer.newLine();
         } catch (IOException e) {
             System.err.println("Error writing to file: " + e.getMessage());

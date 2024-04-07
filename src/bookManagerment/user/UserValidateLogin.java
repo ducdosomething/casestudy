@@ -1,9 +1,6 @@
 package bookManagerment.user;
 
-import bookManagerment.librarian.LibrarianValidateLogin;
-import model.LibrarianAccount;
 import model.UserAccount;
-import storage.LibrarianReadWriteFile;
 import storage.UserReadWriteFile;
 
 import java.util.List;

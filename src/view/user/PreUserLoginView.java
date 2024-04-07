@@ -17,7 +17,7 @@ public class PreUserLoginView {
         String fileName = "src/database/UserAccount.txt";
         List<UserAccount> userAccounts = UserReadWriteFile.readUserAccountFromFile(fileName);
 
-        System.out.println("------------ Log in ------------");
+        System.out.println("------------ USER LOG IN ------------");
         if (UserValidateLogin.checkLogin(fileName)) {
 
             UserView userView = new UserView();

@@ -1,10 +1,7 @@
 package view.user;
 
-import bookManagerment.librarian.LibrarianValidateRegister;
 import bookManagerment.user.UserValidateRegister;
-import model.LibrarianAccount;
 import model.UserAccount;
-import storage.LibrarianReadWriteFile;
 import storage.UserReadWriteFile;
 
 import java.util.List;
@@ -16,7 +13,7 @@ public class UserRegisterView {
         String fileName = "src/database/UserAccount.txt";
         List<UserAccount> userAccounts = UserReadWriteFile.readUserAccountFromFile(fileName);
 
-        System.out.println("----------- Register -----------");
+        System.out.println("----------- USER REGISTER -----------");
         UserValidateRegister.checkRegistration(fileName, userAccounts);
         System.out.println("Press 0 to return to the main menu.");
         int choice = scanner.nextInt();

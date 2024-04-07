@@ -13,7 +13,7 @@ public class LibrarianRegisterView {
         String fileName = "src/database/LibrarianAccount.txt";
         List<LibrarianAccount> librarianAccounts = LibrarianReadWriteFile.readLibrarianAccountFromFile(fileName);
 
-        System.out.println("----------- Register -----------");
+        System.out.println("----------- LIBRARIAN REGISTER -----------");
         LibrarianValidateRegister.checkRegistration(fileName, librarianAccounts);
         System.out.println("Press 0 to return to the main menu.");
         int choice = scanner.nextInt();

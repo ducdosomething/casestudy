@@ -14,7 +14,7 @@ public class UserLoginView {
         UserReadWriteFile userReadWriteFile = new UserReadWriteFile();
         userReadWriteFile.readUserAccountFromFile(fileName);
         UserValidateLogin loginSystem = new UserValidateLogin(fileName);
-        System.out.println("------ Management program ------");
+        System.out.println("------ USER PROGRAM ------");
         int choice;
         do {
             System.out.println("Choose an option: ");

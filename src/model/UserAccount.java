@@ -9,20 +9,18 @@ public class UserAccount extends Account {
     private  String gender;
     private String address;
     private String phoneNumber;
-    private LocalDateTime registrationTime;
 
     public UserAccount() {
         super();
     }
 
-    public UserAccount(String username, String password, int iD, int age, String gender, String address, String phoneNumber, LocalDateTime registrationTime) {
+    public UserAccount(String username, String password, int iD, int age, String gender, String address, String phoneNumber) {
         super(username, password);
         this.iD = iD;
         this.age = age;
         this.gender = gender;
         this.address = address;
         this.phoneNumber = phoneNumber;
-        this.registrationTime = registrationTime;
     }
 
     public int getiD() {
@@ -65,14 +63,6 @@ public class UserAccount extends Account {
         this.phoneNumber = phoneNumber;
     }
 
-    public LocalDateTime getRegistrationTime() {
-        return registrationTime;
-    }
-
-    public void setRegistrationTime(LocalDateTime registrationTime) {
-        this.registrationTime = registrationTime;
-    }
-
     @Override
     public String toString() {
         return "UserAccount{" +
@@ -83,7 +73,6 @@ public class UserAccount extends Account {
                 ", gender = '" + gender + '\'' +
                 ", address = '" + address + '\'' +
                 ", phoneNumber = '" + phoneNumber + '\'' +
-                ", registrationTime = '" + registrationTime +
                 '}';
     }
 }
