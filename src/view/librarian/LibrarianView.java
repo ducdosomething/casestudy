@@ -1,6 +1,6 @@
 package view.librarian;
 
-import bookManagerment.FileHandler;
+import bookManagerment.librarian.LibrarianManagement;
 import model.Book;
 import storage.BookReadWriteFile;
 
@@ -36,7 +36,7 @@ public class LibrarianView {
             switch (choice) {
                 case 1:
                     System.out.println("List of books: ");
-                    FileHandler.showAllBook(fileName);
+                    LibrarianManagement.showAllBook(fileName);
                     break;
                 case 2:
                     System.out.println("Enter an information of the book: ");
@@ -48,19 +48,19 @@ public class LibrarianView {
                     System.out.print("Enter the ID of the book you want to delete: ");
                     int bookIdToRemove = scanner.nextInt();
                     scanner.nextLine();
-                    FileHandler.deleteBookFromFile(bookIdToRemove, fileName);
+                    LibrarianManagement.deleteBookFromFile(bookIdToRemove, fileName);
                     System.out.println("The book has been deleted from the file.");
                     break;
                 case 4:
                     System.out.print("Enter the name of the book you want to delete: ");
                     String bookNameToDelete = scanner.nextLine();
-                    FileHandler.deleteBookByName(bookNameToDelete, fileName);
+                    LibrarianManagement.deleteBookByName(bookNameToDelete, fileName);
                     System.out.println("The book has been deleted from the file.");
                     break;
                 case 5:
                     System.out.print("Enter the name of the book you want to find: ");
                     String bookNameToSearch = scanner.nextLine();
-                    List<Book> foundBooks = FileHandler.searchBookByName(bookNameToSearch, fileName);
+                    List<Book> foundBooks = LibrarianManagement.searchBookByName(bookNameToSearch, fileName);
                     if (foundBooks != null) {
                         System.out.println("Search result:");
                         for (Book book : foundBooks) {
@@ -71,7 +71,7 @@ public class LibrarianView {
                 case 6:
                     System.out.print("Enter the genre of the book you want to find: ");
                     String categoryNameToSearch = scanner.nextLine();
-                    List<Book> foundCategorys = FileHandler.searchBookByCategory(categoryNameToSearch, fileName);
+                    List<Book> foundCategorys = LibrarianManagement.searchBookByCategory(categoryNameToSearch, fileName);
                     if (foundCategorys != null) {
                         System.out.println("Search result:");
                         for (Book book : foundCategorys) {
@@ -81,11 +81,10 @@ public class LibrarianView {
                     break;
                 case 7:
                     System.out.println("List of user accounts:");
-                    FileHandler.showAllUsersAccount(fileUser);
+                    LibrarianManagement.showAllUsersAccount(fileUser);
                     break;
                 case 8:
                     System.out.println("The application has ended.");
-                    scanner.close();
                     return;
                 default:
                     System.out.println("Invalid option. Please choose again.");

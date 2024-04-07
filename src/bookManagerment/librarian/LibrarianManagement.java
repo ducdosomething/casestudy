@@ -1,4 +1,4 @@
-package bookManagerment;
+package bookManagerment.librarian;
 
 import model.Book;
 import model.UserAccount;
@@ -9,7 +9,7 @@ import java.io.*;
     import java.util.ArrayList;
     import java.util.List;
 
-public class FileHandler {
+public class LibrarianManagement {
 
     public static void showAllUsersAccount(String fileUser) {
         List<UserAccount> userAccounts = UserReadWriteFile.readUserAccountFromFile(fileUser);
