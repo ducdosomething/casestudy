@@ -3,23 +3,49 @@ package bookManagerment.librarian;
 import bookManagerment.user.UserManagement;
 import model.Book;
 import model.UserAccount;
+import model.BorrowedBook;
 import storage.BookReadWriteFile;
 import storage.UserReadWriteFile;
 
 import java.io.*;
     import java.util.ArrayList;
     import java.util.List;
-import java.util.Map;
 
 public class LibrarianManagement {
-    private static UserManagement userManagement;
+    public static UserManagement userManagement;
 
     public LibrarianManagement(UserManagement userManagement) {
         this.userManagement = userManagement;
     }
 
-    public static void displayBorrowedBooks(Map<String, String> borrowedBooks) {
-        userManagement.displayBorrowedBooks();
+    public static List<BorrowedBook> readBorrowedBooksFromFile(String fileName2) {
+        List<BorrowedBook> borrowedBooks = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName2))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data.length == 2) {
+                    String username = data[0];
+                    String bookTitle = data[1];
+                    borrowedBooks.add(new BorrowedBook(username, bookTitle));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return borrowedBooks;
+    }
+    public static void showBorrowedBooksList(String fileName2) {
+        List<BorrowedBook> borrowedBooks = readBorrowedBooksFromFile(fileName2);
+        if (borrowedBooks.isEmpty()) {
+            System.out.println("No books available!");
+            return;
+        }
+        System.out.printf("%5s | %20s \n", "USERNAME", "BOOK TITLE");
+        for (BorrowedBook borrowedBook : borrowedBooks) {
+            System.out.printf("%5s | %20s \n",
+                    borrowedBook.getUsername(), borrowedBook.getBookTitle());
+        }
     }
 
     public static void showAllUsersAccount(String fileUser) {
@@ -162,6 +188,27 @@ public class LibrarianManagement {
             return foundCategorys;
         }
 
+    public static List<Book> searchBookByAuthor(String authorToSearch, String fileName) {
+        List<Book> foundAuthors = new ArrayList<>();
+        List<Book> books = BookReadWriteFile.readBooksFromFile(fileName);
+        if (books == null) {
+            System.out.println("Unable to read the list of books from the file.");
+            return null;
+        }
 
+        authorToSearch = authorToSearch.trim();
+
+        for (Book book : books) {
+            if (book.getAuthor().equalsIgnoreCase(authorToSearch)) {
+                foundAuthors.add(book);
+            }
+        }
+
+        if (foundAuthors.isEmpty()) {
+            System.out.println("No books found with the specified author. '" + authorToSearch + "'.");
+        }
+
+        return foundAuthors;
+    }
     }
 

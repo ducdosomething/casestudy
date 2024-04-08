@@ -1,12 +1,8 @@
 package view.user;
 
-import bookManagerment.librarian.LibrarianValidateLogin;
 import bookManagerment.user.UserValidateLogin;
-import model.LibrarianAccount;
 import model.UserAccount;
-import storage.LibrarianReadWriteFile;
 import storage.UserReadWriteFile;
-import view.librarian.LibrarianView;
 
 import java.util.List;
 import java.util.Scanner;

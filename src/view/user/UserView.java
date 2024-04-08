@@ -8,21 +8,23 @@ import java.util.List;
 import java.util.Scanner;
 
 public class UserView {
-    public static final String FIELD_NAME = "src/database/book.txt";
+    public static final String FILE_NAME = "src/database/book.txt";
+    public static final String FILE_NAME2 = "src/database/borrowedBook.txt";
     public void showUserView() {
         Scanner scanner = new Scanner(System.in);
         UserManagement userManagement = new UserManagement();
-        userManagement.readBorrowedBook(FIELD_NAME);
+        userManagement.readBorrowedBook(FILE_NAME);
 
         while (true) {
             System.out.println("------- USER MENU -------");
             System.out.println("1. View information of all books from the file");
             System.out.println("2. Find book from file by name");
             System.out.println("3. Find book from file by category");
-            System.out.println("4. Borrow a book");
-            System.out.println("5. Return a book");
-            System.out.println("6. Display list of borrowed books");
-            System.out.println("7. Exit");
+            System.out.println("4. Find book from file by author");
+            System.out.println("5. Borrow a book");
+            System.out.println("6. Return a book");
+            System.out.println("7. Display list of borrowed books");
+            System.out.println("0. Exit");
             System.out.print("Choose an option: ");
 
             int choice = scanner.nextInt();
@@ -31,12 +33,12 @@ public class UserView {
             switch (choice) {
                 case 1:
                     System.out.println("List of books from the file:");
-                    LibrarianManagement.showAllBook(FIELD_NAME);
+                    LibrarianManagement.showAllBook(FILE_NAME);
                     break;
                 case 2:
                     System.out.print("Enter the name of the book you want to find: ");
                     String bookNameToSearch = scanner.nextLine();
-                    List<Book> foundBooks = LibrarianManagement.searchBookByName(bookNameToSearch, FIELD_NAME);
+                    List<Book> foundBooks = LibrarianManagement.searchBookByName(bookNameToSearch, FILE_NAME);
                     if (foundBooks != null) {
                         System.out.println("Search result:");
                         for (Book book : foundBooks) {
@@ -47,7 +49,7 @@ public class UserView {
                 case 3:
                     System.out.print("Enter the genre of the book you want to find: ");
                     String categoryNameToSearch = scanner.nextLine();
-                    List<Book> foundCategorys = LibrarianManagement.searchBookByCategory(categoryNameToSearch, FIELD_NAME);
+                    List<Book> foundCategorys = LibrarianManagement.searchBookByCategory(categoryNameToSearch, FILE_NAME);
                     if (foundCategorys != null) {
                         System.out.println("Search result:");
                         for (Book book : foundCategorys) {
@@ -56,23 +58,32 @@ public class UserView {
                     }
                     break;
                 case 4:
-
+                    System.out.print("Enter the author of the book you want to find: ");
+                    String authorToSearch = scanner.nextLine();
+                    List<Book> foundAuthors = LibrarianManagement.searchBookByAuthor(authorToSearch, FILE_NAME);
+                    if (foundAuthors != null) {
+                        System.out.println("Search result:");
+                        for (Book book : foundAuthors) {
+                            System.out.println(book);
+                        }
+                    }
+                    break;
+                case 5:
                     System.out.print("Enter the name of the book you want to borrow: ");
                     String borrowBookTitle = scanner.nextLine();
                     System.out.print("Enter your username: ");
                     String borrower = scanner.nextLine();
-                    userManagement.borrowBook(borrowBookTitle, borrower);
+                    userManagement.borrowBook(borrowBookTitle, borrower, FILE_NAME2);
                     break;
-                case 5:
-
+                case 6:
                     System.out.print("Enter the name of the book you want to return: ");
                     String returnBookTitle = scanner.nextLine();
                     userManagement.returnBook(returnBookTitle);
                     break;
-                case 6:
+                case 7:
                     userManagement.displayBorrowedBooks();
                     break;
-                case 7:
+                case 0:
                     System.out.println("The application has ended.");
                     return;
                 default:

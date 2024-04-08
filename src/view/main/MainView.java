@@ -1,7 +1,5 @@
 package view.main;
 
-import bookManagerment.librarian.LibrarianManagement;
-import bookManagerment.user.UserManagement;
 import view.librarian.LibrarianLoginView;
 import view.user.UserLoginView;
 

@@ -1,7 +1,6 @@
 package view.librarian;
 
 import bookManagerment.librarian.LibrarianManagement;
-import bookManagerment.user.UserManagement;
 import model.Book;
 import storage.BookReadWriteFile;
 
@@ -10,6 +9,7 @@ import java.util.List;
 
 public class LibrarianView {
     public static final String FILE_NAME = "src/database/book.txt";
+    public static final String FILE_NAME2 = "src/database/borrowedBook.txt";
     public static final String FILE_USER = "src/database/UserAccount.txt";
 
     public void showLibrarianView() {
@@ -24,9 +24,10 @@ public class LibrarianView {
             System.out.println("4. Delete book from file by name");
             System.out.println("5. Find book from file by name");
             System.out.println("6. Find book from file by genre");
-            System.out.println("7. View all reader accounts in the system");
-            System.out.println("8. View the list of borrowed books.");
-            System.out.println("9. Exit");
+            System.out.println("7. Find book from file by author");
+            System.out.println("8. View all reader accounts in the system");
+            System.out.println("9. View the list of borrowed books.");
+            System.out.println("0. Exit");
             System.out.print("Choose an option: ");
 
 
@@ -80,14 +81,24 @@ public class LibrarianView {
                     }
                     break;
                 case 7:
+                    System.out.print("Enter the author of the book you want to find: ");
+                    String authorToSearch = scanner.nextLine();
+                    List<Book> foundAuthors = LibrarianManagement.searchBookByAuthor(authorToSearch, FILE_NAME);
+                    if (foundAuthors != null) {
+                        System.out.println("Search result:");
+                        for (Book book : foundAuthors) {
+                            System.out.println(book);
+                        }
+                    }
+                    break;
+                case 8:
                     System.out.println("List of user accounts:");
                     LibrarianManagement.showAllUsersAccount(FILE_USER);
                     break;
-                case 8:
-                    System.out.println("List of borrowed books:");
-                    UserManagement userManagement = new UserManagement();
-                    LibrarianManagement librarianManagement = new LibrarianManagement(userManagement);
                 case 9:
+                    System.out.println("List of borrowed books:");
+                    LibrarianManagement.showBorrowedBooksList(FILE_NAME2);
+                case 0:
                     System.out.println("The application has ended.");
                     return;
                 default:
